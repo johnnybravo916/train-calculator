@@ -7,29 +7,103 @@ const Earnings = (props) => {
     const [hours, setHours] = useState({
         absences: 0.0,
         undertime: 0.0,
+        overtime: 0.0,
+        rest: 0.0,
+        night: 0.0,
+        work_special: 0.0,
+        work_regular: 0.0,
     });
 
     const handleAbsences = (e, earningtype) => {
-        console.log(earningtype);
         const value = e.target.value;
-        if (earningtype == "absence") {
+        if (earningtype === "absence") {
             const absence_value = (-(value * rate.daily)).toFixed(2);
-            // console.log(absence_value)
             setHours((prevValue) => {
                 return {
                     ...prevValue,
                     absences: absence_value,
                 };
             });
-        } else if (earningtype == "undertime") {
+        } else if (earningtype === "undertime") {
             const undertime_value = (-(value * rate.hourly)).toFixed(2);
-            console.log(undertime_value);
             setHours((prevValue) => {
                 return {
                     ...prevValue,
                     undertime: undertime_value,
                 };
             });
+        }
+    };
+
+    const handleRegular = (e, regulartype) => {
+        const value = e.target.value;
+        switch (regulartype) {
+            case "overtime":
+                const overtime_value = (
+                    rate.hourly *
+                    0.0125 *
+                    100 *
+                    value
+                ).toFixed(2);
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        overtime: overtime_value,
+                    };
+                });
+                break;
+            case "rest":
+                const rest_value = (rate.hourly * 0.013 * 100 * value).toFixed(
+                    2
+                );
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        rest: rest_value,
+                    };
+                });
+                break;
+            case "night":
+                const night_value = (rate.hourly * 0.001 * 100 * value).toFixed(
+                    2
+                );
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        night: night_value,
+                    };
+                });
+                break;
+            case "work_special":
+                const special_value = (
+                    rate.hourly *
+                    0.003 *
+                    100 *
+                    value
+                ).toFixed(2);
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        work_special: special_value,
+                    };
+                });
+                break;
+            case "work_regular":
+                const regular_value = (
+                    rate.hourly *
+                    0.01 *
+                    100 *
+                    value
+                ).toFixed(2);
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        work_regular: regular_value,
+                    };
+                });
+                break;
+            default:
+                console.log("error");
         }
     };
 
@@ -124,13 +198,24 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_regular_overtime"
+                                name="earnings_regular_overtime"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleRegular(e, "overtime");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_regular_overtime_value"
+                                value={hours.overtime}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
@@ -142,13 +227,24 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_rest_day"
+                                name="earnings_rest_day"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleRegular(e, "rest");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_rest_day_value"
+                                value={hours.rest}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
@@ -156,17 +252,28 @@ const Earnings = (props) => {
                             htmlFor="daily_rate"
                             className="col-sm-4 col-form-label"
                         >
-                            Regular Overtime
+                            Regular Night Differential
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_night"
+                                name="earnings_night"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleRegular(e, "night");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_night_value"
+                                value={hours.night}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
@@ -178,13 +285,24 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_work_special"
+                                name="earnings_work_special"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleRegular(e, "work_special");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_work_special_value"
+                                value={hours.work_special}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
@@ -196,13 +314,24 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_work_regular"
+                                name="earnings_work_regular"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleRegular(e, "work_regular");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_work_regular_value"
+                                value={hours.work_regular}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                 </div>
