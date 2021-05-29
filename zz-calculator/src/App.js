@@ -1,64 +1,63 @@
+import { useState } from "react";
+
 import "./App.css";
+import Rate from "./Rate";
 
 const App = () => {
+    const [rate, setRate] = useState({
+        monthly: 0.00,
+        daily: 0.00,
+        hourly: 0.00,
+    });
+
+    const handleMonthly = (e) => {
+        const { value } = e.target;
+        setRate((prevValue) => {
+            return {
+                ...prevValue,
+                monthly: value,
+            };
+        });
+    };
+
+    const handleHourly = (e) => {
+        const daily = e.target.value;
+        const hourly = (daily / 8).toFixed(2)
+        setRate((prevValue) => {
+            return {
+                ...prevValue,
+                hourly: hourly,
+                daily: daily,
+            };
+        });
+    };
+
     return (
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
-                    <h1>Monthly Salary</h1>
-                    <div className="block-rate">
-                        <div className="row mb-3">
-                            <label
-                                for="daily_rate"
-                                className="col-sm-4 col-form-label"
-                            >
-                                Daily Rate
-                            </label>
-                            <div className="col-sm-4">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="daily_rate"
-                                />
-                            </div>
-                        </div>
-                        <div className="row mb-3">
-                            <label
-                                for="daily_rate"
-                                className="col-sm-4 col-form-label"
-                            >
-                                Hourly Rate
-                            </label>
-                            <div className="col-sm-4">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="daily_rate"
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    <Rate
+                        handleMonthly={handleMonthly}
+                        handleHourly={handleHourly}
+                        rate={rate}
+                    />
                     <h2>Earnings</h2>
                     <div className="block-earnings">
                         <div className="row mb-4">
                             <label
-                                for="daily_rate"
+                                htmlFor="daily_rate"
                                 className="col-sm-4 col-form-label"
                             >
                                 Basic Pay (semi monthly)
                             </label>
                             <div className="col-sm-4">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="daily_rate"
-                                />
+                                <input type="text" className="form-control" />
                             </div>
                         </div>
                         <div className="block-earnings__absences mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Absences
@@ -67,7 +66,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -80,7 +78,7 @@ const App = () => {
                             </div>
                             <div className="row">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Undertime/Tardiness
@@ -89,7 +87,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -104,7 +101,7 @@ const App = () => {
                         <div className="block-earnings__regular mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Regular Overtime
@@ -113,7 +110,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -126,7 +122,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Rest Day Work
@@ -135,7 +131,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -148,7 +143,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Regular Overtime
@@ -157,7 +152,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -170,7 +164,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Working on Special Holiday
@@ -179,7 +173,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -192,7 +185,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Working on Regular Holiday
@@ -201,7 +194,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -216,7 +208,7 @@ const App = () => {
                         <div className="block-earnings__overtime mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Overtime on Rest Day
@@ -225,7 +217,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -238,7 +229,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Overtime on Special Holiday
@@ -247,7 +238,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -260,7 +250,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Overtime on Special Holiday at the same time
@@ -270,7 +260,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -283,7 +272,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Overtime on Regular Holiday
@@ -292,7 +281,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -305,7 +293,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Overtime on Regular Holiday at the same time
@@ -315,7 +303,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -330,7 +317,7 @@ const App = () => {
                         <div className="block-earnings__working mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Working on Rest Day at the same time Special
@@ -340,7 +327,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -353,7 +339,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Working on Rest Day at the same time Regular
@@ -363,7 +349,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -378,7 +363,7 @@ const App = () => {
                         <div className="block-earnings__night mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Night Differential on Rest Day
@@ -387,7 +372,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -400,7 +384,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Night Differential on Special Holiday
@@ -409,7 +393,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -422,7 +405,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Night Differential on Special Holiday at the
@@ -432,7 +415,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -445,7 +427,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Night Differential on Regular Holiday
@@ -454,7 +436,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -467,7 +448,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Night Differential on Regular Holiday at the
@@ -477,7 +458,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -492,7 +472,7 @@ const App = () => {
                         <div className="block-earnings__other mb-4">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Other Earnings Taxable
@@ -501,7 +481,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -514,7 +493,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Other Earnings NonTaxable
@@ -523,7 +502,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Hours"
                                     />
                                 </div>
@@ -538,7 +516,7 @@ const App = () => {
                         <div className="block-earnings__total mb-5">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     TOTAL GROSS INCOME
@@ -547,13 +525,12 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                     />
                                 </div>
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Taxable Amount
@@ -562,7 +539,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                     />
                                 </div>
                             </div>
@@ -574,7 +550,7 @@ const App = () => {
                         <div className="block-deductions__mandatory mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     SSS Mandatory Contribution
@@ -583,7 +559,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                     />
                                 </div>
                                 <div className="col-sm-4">
@@ -595,7 +570,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     PHILHEALTH Mandatory Contribution
@@ -604,7 +579,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                     />
                                 </div>
                                 <div className="col-sm-4">
@@ -616,7 +590,7 @@ const App = () => {
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     HDMF Mandatory Contribution
@@ -625,7 +599,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                     />
                                 </div>
                                 <div className="col-sm-4">
@@ -639,7 +612,7 @@ const App = () => {
                         <div className="block-deductions__loan mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     SSS Loan
@@ -648,14 +621,13 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Enter Loan"
                                     />
                                 </div>
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     HDMF Loan
@@ -664,7 +636,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Enter Loan"
                                     />
                                 </div>
@@ -673,7 +644,7 @@ const App = () => {
                         <div className="block-deductions__contribution mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     HDMF Additional Contribution
@@ -682,14 +653,13 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Enter Contribution"
                                     />
                                 </div>
                             </div>
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     HMO Additional Contribution
@@ -698,7 +668,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Enter Contribution"
                                     />
                                 </div>
@@ -707,7 +676,7 @@ const App = () => {
                         <div className="block-deductions__other mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Other Deductions
@@ -716,7 +685,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                         placeholder="Enter Deduction"
                                     />
                                 </div>
@@ -725,7 +693,7 @@ const App = () => {
                         <div className="block-deductions__tax mb-3">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     Withholding Tax
@@ -734,7 +702,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                     />
                                 </div>
                             </div>
@@ -744,7 +711,7 @@ const App = () => {
                         <div className="block-total__deductions mb-4">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     TOTAL DEDUCTIONS
@@ -753,7 +720,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                     />
                                 </div>
                             </div>
@@ -761,7 +727,7 @@ const App = () => {
                         <div className="block-total__net mb-5">
                             <div className="row mb-1">
                                 <label
-                                    for="daily_rate"
+                                    htmlFor="daily_rate"
                                     className="col-sm-4 col-form-label"
                                 >
                                     TOTAL NET PAY
@@ -770,7 +736,6 @@ const App = () => {
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="daily_rate"
                                     />
                                 </div>
                             </div>
