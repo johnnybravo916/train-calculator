@@ -19,6 +19,7 @@ const Rate = (props) => {
                             id="monthly_salary"
                             onChange={handleMonthly}
                             placeholder="0.00"
+                            name="monthly_rate"
                         />
                     </div>
                 </div>
@@ -33,6 +34,7 @@ const Rate = (props) => {
                             id="daily_rate"
                             onChange={handleHourly}
                             placeholder="0.00"
+                            name="daily_rate"
                         />
                     </div>
                 </div>
@@ -47,6 +49,7 @@ const Rate = (props) => {
                             id="hourly_rate"
                             value={rate.hourly}
                             placeholder="0.00"
+                            name="hourly_rate"
                             readOnly
                         />
                     </div>
