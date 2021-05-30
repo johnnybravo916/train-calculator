@@ -12,12 +12,31 @@ const Earnings = (props) => {
         night: 0.0,
         work_special: 0.0,
         work_regular: 0.0,
+        ot_rest: 0.0,
+        ot_special: 0.0,
+        ot_special_same: 0.0,
+        ot_regular: 0.0,
+        ot_regular_same: 0.0,
+        working_special: 0.0,
+        working_regular: 0.0,
+        night_rest: 0.0,
+        night_special: 0.0,
+        night_special_same: 0.0,
+        night_regular: 0.0,
+        night_regular_same: 0.0,
+        other_tax: 0.0,
+        other_nontax: 0.0,
     });
+
+    // const formatter = new Intl.NumberFormat('en-US', {
+    //   style:'currency',
+    //   currency: 'PHP'
+    // })
 
     const handleAbsences = (e, earningtype) => {
         const value = e.target.value;
         if (earningtype === "absence") {
-            const absence_value = (-(value * rate.daily)).toFixed(2);
+            const absence_value = -(value * rate.daily);
             setHours((prevValue) => {
                 return {
                     ...prevValue,
@@ -25,8 +44,9 @@ const Earnings = (props) => {
                 };
             });
         } else if (earningtype === "undertime") {
-            const undertime_value = (-(value * rate.hourly)).toFixed(2);
+            const undertime_value = -(value * rate.hourly);
             setHours((prevValue) => {
+                console.log(prevValue.total);
                 return {
                     ...prevValue,
                     undertime: undertime_value,
@@ -39,12 +59,8 @@ const Earnings = (props) => {
         const value = e.target.value;
         switch (regulartype) {
             case "overtime":
-                const overtime_value = (
-                    rate.hourly *
-                    0.0125 *
-                    100 *
-                    value
-                ).toFixed(2);
+                const overtime_value = rate.hourly * 0.0125 * 100 * value;
+                console.log(overtime_value);
                 setHours((prevValue) => {
                     return {
                         ...prevValue,
@@ -53,9 +69,7 @@ const Earnings = (props) => {
                 });
                 break;
             case "rest":
-                const rest_value = (rate.hourly * 0.013 * 100 * value).toFixed(
-                    2
-                );
+                const rest_value = rate.hourly * 0.013 * 100 * value;
                 setHours((prevValue) => {
                     return {
                         ...prevValue,
@@ -64,9 +78,7 @@ const Earnings = (props) => {
                 });
                 break;
             case "night":
-                const night_value = (rate.hourly * 0.001 * 100 * value).toFixed(
-                    2
-                );
+                const night_value = rate.hourly * 0.001 * 100 * value;
                 setHours((prevValue) => {
                     return {
                         ...prevValue,
@@ -75,12 +87,7 @@ const Earnings = (props) => {
                 });
                 break;
             case "work_special":
-                const special_value = (
-                    rate.hourly *
-                    0.003 *
-                    100 *
-                    value
-                ).toFixed(2);
+                const special_value = rate.hourly * 0.003 * 100 * value;
                 setHours((prevValue) => {
                     return {
                         ...prevValue,
@@ -89,16 +96,176 @@ const Earnings = (props) => {
                 });
                 break;
             case "work_regular":
-                const regular_value = (
-                    rate.hourly *
-                    0.01 *
-                    100 *
-                    value
-                ).toFixed(2);
+                const regular_value = rate.hourly * 0.01 * 100 * value;
                 setHours((prevValue) => {
                     return {
                         ...prevValue,
                         work_regular: regular_value,
+                    };
+                });
+                break;
+            default:
+                console.log("error");
+        }
+    };
+
+    const handleOT = (e, ottype) => {
+        const value = e.target.value;
+        switch (ottype) {
+            case "ot_rest":
+                const ot_rest_value = rate.hourly * 0.0169 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        ot_rest: ot_rest_value,
+                    };
+                });
+                break;
+            case "ot_special":
+                const ot_special_value = rate.hourly * 0.0169 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        ot_special: ot_special_value,
+                    };
+                });
+                break;
+            case "ot_special_same":
+                const ot_special_same_value =
+                    rate.hourly * 0.0195 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        ot_special_same: ot_special_same_value,
+                    };
+                });
+                break;
+            case "ot_regular":
+                const ot_regular_value = rate.hourly * 0.026 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        ot_regular: ot_regular_value,
+                    };
+                });
+                break;
+            case "ot_regular_same":
+                const ot_regular_same_value =
+                    rate.hourly * 0.0338 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        ot_regular_same: ot_regular_same_value,
+                    };
+                });
+                break;
+            default:
+                console.log("error");
+        }
+    };
+
+    const handleWorking = (e, workingtype) => {
+        const value = e.target.value;
+        switch (workingtype) {
+            case "working_special":
+                const working_special_value = rate.hourly * 0.015 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        working_special: working_special_value,
+                    };
+                });
+                break;
+            case "working_regular":
+                const working_regular_value = rate.hourly * 0.026 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        working_regular: working_regular_value,
+                    };
+                });
+                break;
+            default:
+                console.log("error");
+        }
+    };
+
+    const handleNight = (e, nighttype) => {
+        const value = e.target.value;
+        switch (nighttype) {
+            case "night_rest":
+                const night_rest_value =
+                    rate.hourly * 0.013 * 0.1 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        night_rest: night_rest_value,
+                    };
+                });
+                break;
+            case "night_special":
+                const night_special_value =
+                    rate.hourly * 0.013 * 0.1 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        night_special: night_special_value,
+                    };
+                });
+                break;
+            case "night_special_same":
+                const night_special_same_value =
+                    rate.hourly * 0.015 * 0.1 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        night_special_same: night_special_same_value,
+                    };
+                });
+                break;
+            case "night_regular":
+                const night_regular_value =
+                    rate.hourly * 0.02 * 0.1 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        night_regular: night_regular_value,
+                    };
+                });
+                break;
+            case "night_regular_same":
+                const night_regular_same_value =
+                    rate.hourly * 0.0206 * 0.1 * 100 * value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        night_regular_same: night_regular_same_value,
+                    };
+                });
+                break;
+            default:
+                console.log("error");
+        }
+    };
+
+    const handleOther = (e, othertype) => {
+        const value = e.target.value;
+        switch (othertype) {
+            case "other_tax":
+                const other_tax_value = value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        other_tax: other_tax_value,
+                    };
+                });
+                break;
+            case "other_nontax":
+                const other_nontax_value = value;
+                setHours((prevValue) => {
+                    return {
+                        ...prevValue,
+                        other_nontax: other_nontax_value,
                     };
                 });
                 break;
@@ -191,7 +358,7 @@ const Earnings = (props) => {
                 <div className="block-earnings__regular mb-3">
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_regular_overtime"
                             className="col-sm-4 col-form-label"
                         >
                             Regular Overtime
@@ -220,7 +387,7 @@ const Earnings = (props) => {
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_rest_day"
                             className="col-sm-4 col-form-label"
                         >
                             Rest Day Work
@@ -249,7 +416,7 @@ const Earnings = (props) => {
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_night"
                             className="col-sm-4 col-form-label"
                         >
                             Regular Night Differential
@@ -278,7 +445,7 @@ const Earnings = (props) => {
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_work_special"
                             className="col-sm-4 col-form-label"
                         >
                             Working on Special Holiday
@@ -338,43 +505,65 @@ const Earnings = (props) => {
                 <div className="block-earnings__overtime mb-3">
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_ot_rest"
                             className="col-sm-4 col-form-label"
                         >
                             Overtime on Rest Day
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_ot_rest"
+                                name="earnings_ot_rest"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleOT(e, "ot_rest");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_ot_rest_value"
+                                value={hours.ot_rest}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_ot_special"
                             className="col-sm-4 col-form-label"
                         >
                             Overtime on Special Holiday
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_ot_special"
+                                name="earnings_ot_special"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleOT(e, "ot_special");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_ot_special_value"
+                                value={hours.ot_special}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_ot_special_same"
                             className="col-sm-4 col-form-label"
                         >
                             Overtime on Special Holiday at the same time Rest
@@ -382,36 +571,58 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_ot_special_same"
+                                name="earnings_ot_special_same"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleOT(e, "ot_special_same");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_ot_special_same_value"
+                                value={hours.ot_special_same}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_ot_regular"
                             className="col-sm-4 col-form-label"
                         >
                             Overtime on Regular Holiday
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_ot_regular"
+                                name="earnings_ot_regular"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleOT(e, "ot_regular");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_ot_regular_value"
+                                value={hours.ot_regular}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_ot_regular_same"
                             className="col-sm-4 col-form-label"
                         >
                             Overtime on Regular Holiday at the same time Rest
@@ -419,94 +630,149 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_ot_regular_same"
+                                name="earnings_ot_regular_same"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleOT(e, "ot_regular_same");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_ot_regular_same_value"
+                                value={hours.ot_regular_same}
+                                readOnly
+                                type="number"
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="block-earnings__working mb-3">
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="working_special"
                             className="col-sm-4 col-form-label"
                         >
                             Working on Rest Day at the same time Special Holiday
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_working_special"
+                                name="earnings_working_special"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleWorking(e, "working_special");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_working_special_value"
+                                value={hours.working_special}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="working_regular"
                             className="col-sm-4 col-form-label"
                         >
                             Working on Rest Day at the same time Regular Holiday
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_working_regular"
+                                name="earnings_working_regular"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleWorking(e, "working_regular");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_working_regular_value"
+                                value={hours.working_regular}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="block-earnings__night mb-3">
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="night_rest"
                             className="col-sm-4 col-form-label"
                         >
                             Night Differential on Rest Day
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_night_rest"
+                                name="earnings_night_rest"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleNight(e, "night_rest");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_night_rest_value"
+                                value={hours.night_rest}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="night_special"
                             className="col-sm-4 col-form-label"
                         >
                             Night Differential on Special Holiday
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_night_special"
+                                name="earnings_night_special"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleNight(e, "night_special");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_night_special_value"
+                                value={hours.night_special}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="night_special_same"
                             className="col-sm-4 col-form-label"
                         >
                             Night Differential on Special Holiday at the same
@@ -514,36 +780,58 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_night_special_same"
+                                name="earnings_night_special_same"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleNight(e, "night_special_same");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_night_special_same_value"
+                                value={hours.night_special_same}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="night_regular"
                             className="col-sm-4 col-form-label"
                         >
                             Night Differential on Regular Holiday
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_night_regular"
+                                name="earnings_night_regular"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleNight(e, "night_regular");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_night_regular_value"
+                                value={hours.night_regular}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="night_regular_same"
                             className="col-sm-4 col-form-label"
                         >
                             Night Differential on Regular Holiday at the same
@@ -551,64 +839,106 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_night_regular_same"
+                                name="earnings_night_regular_same"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleNight(e, "night_regular_same");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_night_regular_same_value"
+                                value={hours.night_regular_same}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="block-earnings__other mb-4">
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="other_tax"
                             className="col-sm-4 col-form-label"
                         >
                             Other Earnings Taxable
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_other_tax"
+                                name="earnings_other_tax"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleOther(e, "other_tax");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_other_tax_value"
+                                value={hours.other_tax}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="other_nontax"
                             className="col-sm-4 col-form-label"
                         >
                             Other Earnings NonTaxable
                         </label>
                         <div className="col-sm-4">
                             <input
+                                id="earnings_other_nontax"
+                                name="earnings_other_nontax"
                                 type="text"
                                 className="form-control"
                                 placeholder="Hours"
+                                onChange={(e) => {
+                                    handleOther(e, "other_nontax");
+                                }}
                             />
                         </div>
                         <div className="col-sm-4">
-                            <input className="form-control" type="number" />
+                            <input
+                                className="form-control"
+                                name="earnings_other_nontax_value"
+                                value={hours.other_nontax}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="block-earnings__total mb-5">
                     <div className="row mb-1">
                         <label
-                            htmlFor="daily_rate"
+                            htmlFor="earnings_gross"
                             className="col-sm-4 col-form-label"
                         >
                             TOTAL GROSS INCOME
                         </label>
                         <div className="col-sm-4">
-                            <input type="text" className="form-control" />
+                            <input
+                                className="form-control"
+                                name="earnings_gross"
+                                value={Object.values(hours).reduce((a, b) => {
+                                    console.log(a + b);
+                                    return a + b;
+                                }, rate.semi_monthly)}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                     <div className="row mb-1">

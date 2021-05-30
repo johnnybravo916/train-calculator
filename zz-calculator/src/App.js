@@ -6,35 +6,41 @@ import Earnings from "./Earnings";
 
 const App = () => {
     const [rate, setRate] = useState({
-        monthly: 0.00,
-        semi_monthly: 0.00,
-        daily: 0.00,
-        hourly: 0.00,
+        monthly: 0.0,
+        semi_monthly: 0.0,
+        daily: 0.0,
+        hourly: 0.0,
     });
+
+
 
     const handleMonthly = (e) => {
         const { value } = e.target;
-        const semi_monthly = (value/2).toFixed(2)
+        const daily = (value / 21.75).toFixed(2);
+        const hourly = (daily / 8).toFixed(2);
+        const semi_monthly = value / 2;
         setRate((prevValue) => {
             return {
                 ...prevValue,
                 monthly: value,
-                semi_monthly: semi_monthly
+                semi_monthly: semi_monthly,
+                daily: daily,
+                hourly: hourly,
             };
         });
     };
 
-    const handleHourly = (e) => {
-        const daily = e.target.value;
-        const hourly = (daily / 8).toFixed(2);
-        setRate((prevValue) => {
-            return {
-                ...prevValue,
-                hourly: hourly,
-                daily: daily,
-            };
-        });
-    };
+    // const handleHourly = (e) => {
+    //     const daily = e.target.value;
+    //     const hourly = (daily / 8).toFixed(2);
+    //     setRate((prevValue) => {
+    //         return {
+    //             ...prevValue,
+    //             hourly: hourly,
+    //             daily: daily,
+    //         };
+    //     });
+    // };
 
     return (
         <div className="container">
@@ -42,7 +48,7 @@ const App = () => {
                 <div className="col-md-12">
                     <Rate
                         handleMonthly={handleMonthly}
-                        handleHourly={handleHourly}
+                        // handleHourly={handleHourly}
                         rate={rate}
                     />
                     <Earnings rate={rate} />
