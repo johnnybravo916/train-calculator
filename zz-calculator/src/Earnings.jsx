@@ -105,7 +105,7 @@ const Earnings = (props) => {
                 });
                 break;
             default:
-                console.log("error");
+                console.log("earnings error");
         }
     };
 
@@ -160,7 +160,7 @@ const Earnings = (props) => {
                 });
                 break;
             default:
-                console.log("error");
+                console.log("earnings error");
         }
     };
 
@@ -186,7 +186,7 @@ const Earnings = (props) => {
                 });
                 break;
             default:
-                console.log("error");
+                console.log("earnings error");
         }
     };
 
@@ -244,7 +244,7 @@ const Earnings = (props) => {
                 });
                 break;
             default:
-                console.log("error");
+                console.log("earnings error");
         }
     };
 
@@ -270,7 +270,7 @@ const Earnings = (props) => {
                 });
                 break;
             default:
-                console.log("error");
+                console.log("earnings error");
         }
     };
 

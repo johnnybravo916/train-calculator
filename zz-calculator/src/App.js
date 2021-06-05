@@ -3,6 +3,12 @@ import { useState } from "react";
 import "./App.css";
 import Rate from "./Rate";
 import Earnings from "./Earnings";
+import Contribution from "./Contribution";
+import Additional from "./Additional";
+import Loan from "./Loan";
+import Other from "./Other";
+import Tax from "./Tax";
+import Total from "./Total";
 
 const App = () => {
     const [rate, setRate] = useState({
@@ -11,8 +17,10 @@ const App = () => {
         daily: 0.0,
         hourly: 0.0,
     });
-
-
+    const [sss, setSSS] = useState({
+        monthly: 0,
+        semi_monthly: 0,
+    });
 
     const handleMonthly = (e) => {
         const { value } = e.target;
@@ -28,6 +36,150 @@ const App = () => {
                 hourly: hourly,
             };
         });
+        calcSSS(value);
+    };
+
+    const calcSSS = (monthly) => {
+        let value = 0;
+        switch (true) {
+            case monthly < 3250:
+                break;
+            case monthly >= 3250 && monthly <= 3749.99:
+                value = 157.5;
+                break;
+            case monthly >= 3750 && monthly <= 4249.99:
+                value = 180.0;
+                break;
+            case monthly >= 4250 && monthly <= 4749.99:
+                value = 202.5;
+                break;
+            case monthly >= 4750 && monthly <= 5249.99:
+                value = 225.0;
+                break;
+            case monthly >= 5250 && monthly <= 5749.99:
+                value = 247.5;
+                break;
+            case monthly >= 5750 && monthly <= 6249.99:
+                value = 270.0;
+                break;
+            case monthly >= 6250 && monthly <= 6749.99:
+                value = 292.5;
+                break;
+            case monthly >= 6750 && monthly <= 7249.99:
+                value = 315.0;
+                break;
+            case monthly >= 7250 && monthly <= 7749.99:
+                value = 337.5;
+                break;
+            case monthly >= 7750 && monthly <= 8249.99:
+                value = 360.0;
+                break;
+            case monthly >= 8250 && monthly <= 8749.99:
+                value = 382.5;
+                break;
+            case monthly >= 8750 && monthly <= 9249.99:
+                value = 405.0;
+                break;
+            case monthly >= 9250 && monthly <= 9749.99:
+                value = 427.5;
+                break;
+            case monthly >= 9750 && monthly <= 10249.99:
+                value = 450.0;
+                break;
+            case monthly >= 10250 && monthly <= 10749.99:
+                value = 472.5;
+                break;
+            case monthly >= 10750 && monthly <= 11249.99:
+                value = 495.0;
+                break;
+            case monthly >= 11250 && monthly <= 11749.99:
+                value = 517.5;
+                break;
+            case monthly >= 11750 && monthly <= 12249.99:
+                value = 540.0;
+                break;
+            case monthly >= 12250 && monthly <= 12749.99:
+                value = 562.5;
+                break;
+            case monthly >= 12750 && monthly <= 13249.99:
+                value = 585.0;
+                break;
+            case monthly >= 13250 && monthly <= 13749.99:
+                value = 607.5;
+                break;
+            case monthly >= 13750 && monthly <= 14249.99:
+                value = 630.0;
+                break;
+            case monthly >= 14250 && monthly <= 14749.99:
+                value = 652.5;
+                break;
+            case monthly >= 14750 && monthly <= 15249.99:
+                value = 675.0;
+                break;
+            case monthly >= 15250 && monthly <= 15749.99:
+                value = 697.5;
+                break;
+            case monthly >= 15750 && monthly <= 16249.99:
+                value = 720.0;
+                break;
+            case monthly >= 16250 && monthly <= 16749.99:
+                value = 742.5;
+                break;
+            case monthly >= 16750 && monthly <= 17249.99:
+                value = 765.0;
+                break;
+            case monthly >= 17250 && monthly <= 17749.99:
+                value = 787.5;
+                break;
+            case monthly >= 17750 && monthly <= 18249.99:
+                value = 810.0;
+                break;
+            case monthly >= 18250 && monthly <= 18749.99:
+                value = 832.5;
+                break;
+            case monthly >= 18750 && monthly <= 19249.99:
+                value = 855.0;
+                break;
+            case monthly >= 19250 && monthly <= 19749.99:
+                value = 877.5;
+                break;
+            case monthly >= 19750 && monthly <= 20249.99:
+                value = 900.0;
+                break;
+            case monthly >= 20250 && monthly <= 20749.99:
+                value = 922.5;
+                break;
+            case monthly >= 20750 && monthly <= 21249.99:
+                value = 945.0;
+                break;
+            case monthly >= 21250 && monthly <= 21749.99:
+                value = 967.5;
+                break;
+            case monthly >= 21750 && monthly <= 22249.99:
+                value = 990.0;
+                break;
+            case monthly >= 22250 && monthly <= 22749.99:
+                value = 1012.5;
+                break;
+            case monthly >= 22750 && monthly <= 23249.99:
+                value = 1035.0;
+                break;
+            case monthly >= 23250 && monthly <= 23749.99:
+                value = 1057.5;
+                break;
+            case monthly >= 23750 && monthly <= 24249.99:
+                value = 1080.0;
+                break;
+            case monthly >= 24250 && monthly <= 24749.99:
+                value = 1102.5;
+                break;
+            case monthly >= 24750 && monthly <= 800000:
+                value = 1125.0;
+                break;
+            default:
+                console.log(`contribution error for SSS, ${monthly}`);
+        }
+        setSSS({ monthly: value, semi_monthly: value / 2 });
     };
 
     // const handleHourly = (e) => {
@@ -45,6 +197,7 @@ const App = () => {
     return (
         <div className="container">
             <div className="row">
+                <Contribution sss={sss} />
                 <div className="col-md-12">
                     <Rate
                         handleMonthly={handleMonthly}
@@ -55,200 +208,12 @@ const App = () => {
                 </div>
                 <div className="col-md-12">
                     <div className="block-deductions mb-5">
-                        <div className="block-deductions__mandatory mb-3">
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    SSS Mandatory Contribution
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                    />
-                                </div>
-                                <div className="col-sm-4">
-                                    <input
-                                        className="form-control"
-                                        type="number"
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    PHILHEALTH Mandatory Contribution
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                    />
-                                </div>
-                                <div className="col-sm-4">
-                                    <input
-                                        className="form-control"
-                                        type="number"
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    HDMF Mandatory Contribution
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                    />
-                                </div>
-                                <div className="col-sm-4">
-                                    <input
-                                        className="form-control"
-                                        type="number"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="block-deductions__loan mb-3">
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    SSS Loan
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter Loan"
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    HDMF Loan
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter Loan"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="block-deductions__contribution mb-3">
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    HDMF Additional Contribution
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter Contribution"
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    HMO Additional Contribution
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter Contribution"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="block-deductions__other mb-3">
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    Other Deductions
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter Deduction"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="block-deductions__tax mb-3">
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    Withholding Tax
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        <Loan />
+                        <Additional />
+                        <Other />
+                        <Tax />
                     </div>
-                    <div className="block-total">
-                        <div className="block-total__deductions mb-4">
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    TOTAL DEDUCTIONS
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="block-total__net mb-5">
-                            <div className="row mb-1">
-                                <label
-                                    htmlFor="daily_rate"
-                                    className="col-sm-4 col-form-label"
-                                >
-                                    TOTAL NET PAY
-                                </label>
-                                <div className="col-sm-4">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Total />
                 </div>
             </div>
         </div>
