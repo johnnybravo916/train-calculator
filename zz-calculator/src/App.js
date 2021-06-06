@@ -11,6 +11,10 @@ import Tax from "./Tax";
 import Total from "./Total";
 
 const App = () => {
+    const [pay, setPay] = useState({
+        gross: 0.0,
+        net: 0.0
+    })
     const [rate, setRate] = useState({
         monthly: 0.0,
         semi_monthly: 0.0,
@@ -52,6 +56,7 @@ const App = () => {
                 hourly: hourly,
             };
         });
+        handleGross(semi_monthly);
         calcSSS(value);
         calcPH(value);
         calcHDMF(value);
@@ -278,6 +283,14 @@ const App = () => {
         }
     };
 
+    const handleGross = (value) =>{
+        setPay((prevValue)=>{
+           return {
+               ...prevValue,
+            gross: value}
+
+        })
+    }
     // const handleHourly = (e) => {
     //     const daily = e.target.value;
     //     const hourly = (daily / 8).toFixed(2);
@@ -293,17 +306,17 @@ const App = () => {
     return (
         <div className="container">
             <div className="row">
-                <Contribution sss={sss} ph={ph} hdmf={hdmf} />
                 <div className="col-md-12">
                     <Rate
                         handleMonthly={handleMonthly}
                         // handleHourly={handleHourly}
                         rate={rate}
                     />
-                    <Earnings rate={rate} />
+                    <Earnings rate={rate} pay={pay} setPay={setPay} />
                 </div>
                 <div className="col-md-12">
                     <div className="block-deductions mb-5">
+                        <Contribution sss={sss} ph={ph} hdmf={hdmf} />
                         <Loan handleContribution={handleContribution} />
                         <Additional handleContribution={handleContribution} />
                         <Other handleContribution={handleContribution} />
