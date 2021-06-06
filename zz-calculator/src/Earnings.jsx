@@ -1,10 +1,7 @@
-import { useState } from "react";
-
 import React from "react";
 
 const Earnings = (props) => {
     const { rate, pay, setHours, hours } = props;
-
 
     // const formatter = new Intl.NumberFormat('en-US', {
     //   style:'currency',
@@ -17,7 +14,6 @@ const Earnings = (props) => {
     //     });
     //     return value
     // };
- 
 
     const handleAbsences = (e, earningtype) => {
         const value = e.target.value;
@@ -924,14 +920,14 @@ const Earnings = (props) => {
                         </div>
                     </div>
                     <div className="row mb-1">
-                    <label
+                        <label
                             htmlFor="taxable_amount"
                             className="col-sm-4 col-form-label"
                         >
                             Taxable Amount
                         </label>
                         <div className="col-sm-4">
-                        <input
+                            <input
                                 className="form-control"
                                 name="taxable_amount"
                                 value={pay.taxable}

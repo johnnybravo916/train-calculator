@@ -15,7 +15,6 @@ const App = () => {
         gross: 0.0,
         taxable: 0.0,
         deductions: 0.0,
-        net: 0.0,
     });
     const [rate, setRate] = useState({
         monthly: 0.0,
@@ -23,6 +22,7 @@ const App = () => {
         daily: 0.0,
         hourly: 0.0,
     });
+    
     const [sss, setSSS] = useState({
         monthly: 0,
         semi_monthly: 0,
@@ -37,6 +37,7 @@ const App = () => {
         semi_monthly: 0,
     });
     const [withholding, setWithholding] = useState(0);
+    const [net, setNet] = useState(0);
     const [contribution, setContribution] = useState({
         sss: 0.0,
         hdmf: 0.0,
@@ -143,9 +144,23 @@ const App = () => {
             default:
                 console.log("error withholding tax");
         }
-        console.log(withholding_value);
         setWithholding(withholding_value);
     };
+
+    useEffect(() => {
+        let deductions = sss.semi_monthly + ph.semi_monthly + hdmf.semi_monthly + contribution.sss + contribution.hdmf + contribution.hdmf_add + contribution.hmo_add + contribution.other  + withholding
+        setPay((prevValue)=>{
+            return{
+                ...prevValue,
+                deductions: deductions,
+            }
+        })
+    }, [sss, ph, hdmf, contribution, withholding]);
+
+    useEffect(()=>{
+        let netvalue = pay.gross - pay.deductions
+        setNet(netvalue)
+    },[pay])
 
     const calcSSS = (monthly) => {
         let value = 0;
@@ -404,7 +419,7 @@ const App = () => {
                         <Other handleContribution={handleContribution} />
                         <Tax withholding={withholding} />
                     </div>
-                    <Total pay={pay} />
+                    <Total pay={pay} net={net}/>
                 </div>
             </div>
         </div>
