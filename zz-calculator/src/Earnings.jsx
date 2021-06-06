@@ -3,7 +3,7 @@ import { useState } from "react";
 import React from "react";
 
 const Earnings = (props) => {
-    const { rate } = props;
+    const { rate, pay, setPay } = props;
     const [hours, setHours] = useState({
         absences: 0.0,
         undertime: 0.0,
@@ -26,12 +26,20 @@ const Earnings = (props) => {
         night_regular_same: 0.0,
         other_tax: 0.0,
         other_nontax: 0.0,
+        total: 0.0
     });
 
     // const formatter = new Intl.NumberFormat('en-US', {
     //   style:'currency',
     //   currency: 'PHP'
     // })
+
+    // const addHours = () => {
+    //     let value = Object.values(hours).reduce((a, b) => {
+    //         return a + b;
+    //     });
+    //     return value
+    // };
 
     const handleAbsences = (e, earningtype) => {
         const value = e.target.value;
@@ -46,13 +54,13 @@ const Earnings = (props) => {
         } else if (earningtype === "undertime") {
             const undertime_value = -(value * rate.hourly);
             setHours((prevValue) => {
-                console.log(prevValue.total);
                 return {
                     ...prevValue,
                     undertime: undertime_value,
                 };
             });
         }
+ 
     };
 
     const handleRegular = (e, regulartype) => {
@@ -932,10 +940,7 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_gross"
-                                value={Object.values(hours).reduce((a, b) => {
-                                    console.log(a + b);
-                                    return a + b;
-                                }, rate.semi_monthly)}
+                                value={pay.gross}
                                 type="number"
                                 readOnly
                             />
