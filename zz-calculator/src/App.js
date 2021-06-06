@@ -22,6 +22,15 @@ const App = () => {
         semi_monthly: 0,
     });
 
+    const [ph, setPh] = useState({
+        monthly: 0,
+        semi_monthly: 0,
+    });
+    const [hdmf, setHdmf] = useState({
+        monthly: 0,
+        semi_monthly: 0,
+    });
+
     const handleMonthly = (e) => {
         const { value } = e.target;
         const daily = (value / 21.75).toFixed(2);
@@ -37,6 +46,8 @@ const App = () => {
             };
         });
         calcSSS(value);
+        calcPH(value);
+        calcHDMF(value);
     };
 
     const calcSSS = (monthly) => {
@@ -182,6 +193,35 @@ const App = () => {
         setSSS({ monthly: value, semi_monthly: value / 2 });
     };
 
+    const calcPH = (monthly) => {
+        let value = 0;
+        switch (true) {
+            case monthly < 10000:
+                value = 300;
+                break;
+            case monthly >= 10000.01 && monthly <= 59999.99:
+                value = monthly * 0.03;
+                break;
+            case monthly >= 60000 && monthly <= 800000:
+                value = 1800;
+                break;
+            default:
+                console.log(`contribution error for Philhealth, ${monthly}`);
+        }
+        setPh({ monthly: value, semi_monthly: (value / 2)/2 });
+    };
+
+    const calcHDMF = (monthly) => {
+        let value = 0;
+        if (monthly < 5000) {
+            value = 200
+        } else {
+            value = 200
+        }
+        setHdmf({ monthly: value, semi_monthly: (value / 2)/2 });
+    };
+
+
     // const handleHourly = (e) => {
     //     const daily = e.target.value;
     //     const hourly = (daily / 8).toFixed(2);
@@ -197,7 +237,7 @@ const App = () => {
     return (
         <div className="container">
             <div className="row">
-                <Contribution sss={sss} />
+                <Contribution sss={sss} ph={ph} hdmf={hdmf} />
                 <div className="col-md-12">
                     <Rate
                         handleMonthly={handleMonthly}
