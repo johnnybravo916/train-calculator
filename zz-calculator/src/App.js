@@ -22,7 +22,7 @@ const App = () => {
         daily: 0.0,
         hourly: 0.0,
     });
-    
+
     const [sss, setSSS] = useState({
         monthly: 0,
         semi_monthly: 0,
@@ -68,6 +68,14 @@ const App = () => {
         other_tax: 0.0,
         other_nontax: 0.0,
     });
+
+    const formatPHP = (value) => {
+        let format_net = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "PHP",
+        }).format(value);
+        return format_net;
+    };
 
     const handleMonthly = (e) => {
         const { value } = e.target;
@@ -133,7 +141,7 @@ const App = () => {
                 calculateWithHolding(taxable, 16667, 1250, 0.25);
                 break;
             case taxable >= 33333 && taxable <= 83332:
-                calculateWithHolding(taxable, 33333, 5416.67, 0.30);
+                calculateWithHolding(taxable, 33333, 5416.67, 0.3);
                 break;
             case taxable >= 83333 && taxable <= 333332:
                 calculateWithHolding(taxable, 83333, 20416.67, 0.32);
@@ -148,19 +156,29 @@ const App = () => {
     };
 
     useEffect(() => {
-        let deductions = sss.semi_monthly + ph.semi_monthly + hdmf.semi_monthly + contribution.sss + contribution.hdmf + contribution.hdmf_add + contribution.hmo_add + contribution.other  + withholding
-        setPay((prevValue)=>{
-            return{
+        let deductions =
+            sss.semi_monthly +
+            ph.semi_monthly +
+            hdmf.semi_monthly +
+            contribution.sss +
+            contribution.hdmf +
+            contribution.hdmf_add +
+            contribution.hmo_add +
+            contribution.other +
+            withholding;
+        setPay((prevValue) => {
+            return {
                 ...prevValue,
                 deductions: deductions,
-            }
-        })
+            };
+        });
     }, [sss, ph, hdmf, contribution, withholding]);
 
-    useEffect(()=>{
-        let netvalue = pay.gross - pay.deductions
-        setNet(netvalue)
-    },[pay])
+    useEffect(() => {
+        let netvalue = pay.gross - pay.deductions;
+
+        setNet(formatPHP(netvalue));
+    }, [pay]);
 
     const calcSSS = (monthly) => {
         let value = 0;
@@ -396,9 +414,10 @@ const App = () => {
     // };
 
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
-                <div className="col-md-12">
+                <h1>Salary Calculator</h1>
+                <div className="col-md-6">
                     <Rate
                         handleMonthly={handleMonthly}
                         // handleHourly={handleHourly}
@@ -411,7 +430,7 @@ const App = () => {
                         hours={hours}
                     />
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-6">
                     <div className="block-deductions mb-5">
                         <Contribution sss={sss} ph={ph} hdmf={hdmf} />
                         <Loan handleContribution={handleContribution} />
@@ -419,7 +438,7 @@ const App = () => {
                         <Other handleContribution={handleContribution} />
                         <Tax withholding={withholding} />
                     </div>
-                    <Total pay={pay} net={net}/>
+                    <Total pay={pay} net={net} />
                 </div>
             </div>
         </div>

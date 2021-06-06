@@ -262,11 +262,11 @@ const Earnings = (props) => {
                 <div className="row mb-4">
                     <label
                         htmlFor="daily_rate"
-                        className="col-sm-4 col-form-label"
+                        className="col-sm-6 col-form-label"
                     >
                         Basic Pay (semi monthly)
                     </label>
-                    <div className="col-sm-4">
+                    <div className="col-sm-3">
                         <input
                             type="text"
                             className="form-control"
@@ -280,11 +280,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_absences"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Absences
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 type="text"
                                 className="form-control"
@@ -296,7 +296,7 @@ const Earnings = (props) => {
                                 name="earnings_absences"
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 type="number"
@@ -309,11 +309,11 @@ const Earnings = (props) => {
                     <div className="row">
                         <label
                             htmlFor="earnings_undertime"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Undertime/Tardiness
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 type="text"
                                 id="earnings_undertime"
@@ -325,7 +325,7 @@ const Earnings = (props) => {
                                 name="earnings_undertime"
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 type="number"
@@ -340,11 +340,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_regular_overtime"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Regular Overtime
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_regular_overtime"
                                 name="earnings_regular_overtime"
@@ -356,7 +356,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_regular_overtime_value"
@@ -369,11 +369,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_rest_day"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Rest Day Work
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_rest_day"
                                 name="earnings_rest_day"
@@ -385,7 +385,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_rest_day_value"
@@ -398,11 +398,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_night"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Regular Night Differential
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_night"
                                 name="earnings_night"
@@ -414,7 +414,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_night_value"
@@ -427,11 +427,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_work_special"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Working on Special Holiday
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_work_special"
                                 name="earnings_work_special"
@@ -443,7 +443,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_work_special_value"
@@ -456,11 +456,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="daily_rate"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Working on Regular Holiday
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_work_regular"
                                 name="earnings_work_regular"
@@ -472,7 +472,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_work_regular_value"
@@ -487,11 +487,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_ot_rest"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Overtime on Rest Day
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_ot_rest"
                                 name="earnings_ot_rest"
@@ -503,7 +503,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_ot_rest_value"
@@ -516,11 +516,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_ot_special"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Overtime on Special Holiday
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_ot_special"
                                 name="earnings_ot_special"
@@ -532,7 +532,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_ot_special_value"
@@ -545,12 +545,12 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_ot_special_same"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Overtime on Special Holiday at the same time Rest
                             Day
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_ot_special_same"
                                 name="earnings_ot_special_same"
@@ -562,7 +562,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_ot_special_same_value"
@@ -575,11 +575,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_ot_regular"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Overtime on Regular Holiday
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_ot_regular"
                                 name="earnings_ot_regular"
@@ -591,7 +591,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_ot_regular_value"
@@ -604,12 +604,12 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_ot_regular_same"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Overtime on Regular Holiday at the same time Rest
                             Day
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_ot_regular_same"
                                 name="earnings_ot_regular_same"
@@ -621,7 +621,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_ot_regular_same_value"
@@ -636,11 +636,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="working_special"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Working on Rest Day at the same time Special Holiday
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_working_special"
                                 name="earnings_working_special"
@@ -652,7 +652,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_working_special_value"
@@ -665,11 +665,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="working_regular"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Working on Rest Day at the same time Regular Holiday
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_working_regular"
                                 name="earnings_working_regular"
@@ -681,7 +681,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_working_regular_value"
@@ -696,11 +696,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="night_rest"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Night Differential on Rest Day
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_night_rest"
                                 name="earnings_night_rest"
@@ -712,7 +712,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_night_rest_value"
@@ -725,11 +725,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="night_special"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Night Differential on Special Holiday
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_night_special"
                                 name="earnings_night_special"
@@ -741,7 +741,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_night_special_value"
@@ -754,12 +754,12 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="night_special_same"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Night Differential on Special Holiday at the same
                             time Rest Day
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_night_special_same"
                                 name="earnings_night_special_same"
@@ -771,7 +771,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_night_special_same_value"
@@ -784,11 +784,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="night_regular"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Night Differential on Regular Holiday
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_night_regular"
                                 name="earnings_night_regular"
@@ -800,7 +800,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_night_regular_value"
@@ -813,12 +813,12 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="night_regular_same"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Night Differential on Regular Holiday at the same
                             time Rest Day
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_night_regular_same"
                                 name="earnings_night_regular_same"
@@ -830,7 +830,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_night_regular_same_value"
@@ -845,11 +845,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="other_tax"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Other Earnings Taxable
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_other_tax"
                                 name="earnings_other_tax"
@@ -861,7 +861,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_other_tax_value"
@@ -874,11 +874,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="other_nontax"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Other Earnings NonTaxable
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 id="earnings_other_nontax"
                                 name="earnings_other_nontax"
@@ -890,7 +890,7 @@ const Earnings = (props) => {
                                 }}
                             />
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_other_nontax_value"
@@ -905,11 +905,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="earnings_gross"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             TOTAL GROSS INCOME
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="earnings_gross"
@@ -922,11 +922,11 @@ const Earnings = (props) => {
                     <div className="row mb-1">
                         <label
                             htmlFor="taxable_amount"
-                            className="col-sm-4 col-form-label"
+                            className="col-sm-6 col-form-label"
                         >
                             Taxable Amount
                         </label>
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <input
                                 className="form-control"
                                 name="taxable_amount"

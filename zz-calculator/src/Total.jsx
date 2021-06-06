@@ -7,11 +7,11 @@ const Total = ({pay, net}) => {
                 <div className="row mb-1">
                 <label
                     htmlFor="total_deductions"
-                    className="col-sm-4 col-form-label"
+                    className="col-sm-6 col-form-label"
                 >
                         TOTAL DEDUCTIONS
                     </label>
-                    <div className="col-sm-4">
+                    <div className="col-sm-3">
                     <input
                         className="form-control"
                         name="total_deductions"
@@ -26,17 +26,17 @@ const Total = ({pay, net}) => {
                 <div className="row mb-1">
                 <label
                     htmlFor="total_net_pay"
-                    className="col-sm-4 col-form-label"
+                    className="col-sm-6 col-form-label"
                 >
                         TOTAL NET PAY
                     </label>
-                    <div className="col-sm-4">
+                    <div className="col-sm-3">
                     <input
                         className="form-control"
                         name="total_net_pay"
                         value={net}
                         readOnly
-                        type="number"
+                        type="text"
                     />
                     </div>
                 </div>

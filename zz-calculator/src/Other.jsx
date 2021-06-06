@@ -6,11 +6,11 @@ const Other = ({ handleContribution }) => {
             <div className="row mb-1">
                 <label
                     htmlFor="other_deductions"
-                    className="col-sm-4 col-form-label"
+                    className="col-sm-6 col-form-label"
                 >
                     Other Deductions
                 </label>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="number"
                         className="form-control"

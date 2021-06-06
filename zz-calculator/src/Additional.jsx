@@ -6,11 +6,11 @@ const Additional = ({handleContribution}) => {
             <div className="row mb-1">
                 <label
                     htmlFor="hdmf_add_contribution"
-                    className="col-sm-4 col-form-label"
+                    className="col-sm-6 col-form-label"
                 >
                     HDMF Additional Contribution
                 </label>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="number"
                         className="form-control"
@@ -26,11 +26,11 @@ const Additional = ({handleContribution}) => {
             <div className="row mb-1">
                 <label
                     htmlFor="hmo_add_contribution"
-                    className="col-sm-4 col-form-label"
+                    className="col-sm-6 col-form-label"
                 >
                     HMO Additional Contribution
                 </label>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="number"
                         className="form-control"

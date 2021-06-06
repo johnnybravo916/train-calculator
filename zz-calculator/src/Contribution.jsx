@@ -7,11 +7,11 @@ const Contribution = ({ sss, ph, hdmf }) => {
             <div className="row mb-1">
                 <label
                     htmlFor="sss_contribution"
-                    className="col-sm-4 col-form-label"
+                    className="col-sm-6 col-form-label"
                 >
                     SSS Mandatory Contribution
                 </label>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="text"
                         className="form-control"
@@ -20,7 +20,7 @@ const Contribution = ({ sss, ph, hdmf }) => {
                         value={sss.monthly}
                     />
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         className="form-control"
                         type="number"
@@ -33,11 +33,11 @@ const Contribution = ({ sss, ph, hdmf }) => {
             <div className="row mb-1">
                 <label
                     htmlFor="philhealth_contribution"
-                    className="col-sm-4 col-form-label"
+                    className="col-sm-6 col-form-label"
                 >
                     PHILHEALTH Mandatory Contribution
                 </label>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="text"
                         className="form-control"
@@ -46,7 +46,7 @@ const Contribution = ({ sss, ph, hdmf }) => {
                         value={ph.monthly}
                     />
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="text"
                         className="form-control"
@@ -59,11 +59,11 @@ const Contribution = ({ sss, ph, hdmf }) => {
             <div className="row mb-1">
             <label
                     htmlFor="hdmf_contribution"
-                    className="col-sm-4 col-form-label"
+                    className="col-sm-6 col-form-label"
                 >
                     HDMF Mandatory Contribution
                 </label>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                 <input
                         type="text"
                         className="form-control"
@@ -72,7 +72,7 @@ const Contribution = ({ sss, ph, hdmf }) => {
                         value={hdmf.monthly}
                     />
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="text"
                         className="form-control"
