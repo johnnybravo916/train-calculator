@@ -1,5 +1,6 @@
 {
   "name": "zz-calculator",
+  "homepage": "https://zigzagoffshoring.com/calculator/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

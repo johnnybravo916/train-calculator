@@ -4,10 +4,10 @@ const Loan = ({ handleContribution }) => {
     return (
         <div className="block-deductions__loan mb-3">
             <div className="row mb-1">
-                <label htmlFor="sss_loan" className="col-sm-4 col-form-label">
+                <label htmlFor="sss_loan" className="col-sm-6 col-form-label">
                     SSS Loan
                 </label>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="number"
                         className="form-control"
@@ -21,10 +21,10 @@ const Loan = ({ handleContribution }) => {
                 </div>
             </div>
             <div className="row mb-1">
-                <label htmlFor="hdmf_loan" className="col-sm-4 col-form-label">
+                <label htmlFor="hdmf_loan" className="col-sm-6 col-form-label">
                     HDMF Loan
                 </label>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <input
                         type="number"
                         className="form-control"

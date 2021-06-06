@@ -1,18 +1,19 @@
 import React from "react";
 
 const Rate = (props) => {
-    const {handleMonthly, rate} = props;
-    
+    const { handleMonthly, rate } = props;
 
     return (
         <>
-            <h1>Salary Calculator</h1>
             <div className="block-rate">
                 <div className="row mb-3">
-                    <label htmlFor="monthly_salary" className="col-sm-4 col-form-label">
+                    <label
+                        htmlFor="monthly_salary"
+                        className="col-sm-6 col-form-label"
+                    >
                         Monthly Salary
                     </label>
-                    <div className="col-sm-4">
+                    <div className="col-sm-3">
                         <input
                             type="number"
                             className="form-control"
@@ -24,10 +25,13 @@ const Rate = (props) => {
                     </div>
                 </div>
                 <div className="row mb-3">
-                    <label htmlFor="daily_rate" className="col-sm-4 col-form-label">
+                    <label
+                        htmlFor="daily_rate"
+                        className="col-sm-6 col-form-label"
+                    >
                         Daily Rate
                     </label>
-                    <div className="col-sm-4">
+                    <div className="col-sm-3">
                         <input
                             type="text"
                             className="form-control"
@@ -40,10 +44,13 @@ const Rate = (props) => {
                     </div>
                 </div>
                 <div className="row mb-3">
-                    <label htmlFor="hourly_rate" className="col-sm-4 col-form-label">
+                    <label
+                        htmlFor="hourly_rate"
+                        className="col-sm-6 col-form-label"
+                    >
                         Hourly Rate
                     </label>
-                    <div className="col-sm-4">
+                    <div className="col-sm-3">
                         <input
                             type="text"
                             className="form-control"
