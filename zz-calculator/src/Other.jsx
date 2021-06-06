@@ -1,17 +1,25 @@
 import React from "react";
 
-const Other = () => {
+const Other = ({ handleContribution }) => {
     return (
         <div className="block-deductions__other mb-3">
             <div className="row mb-1">
-                <label htmlFor="daily_rate" className="col-sm-4 col-form-label">
+                <label
+                    htmlFor="other_deductions"
+                    className="col-sm-4 col-form-label"
+                >
                     Other Deductions
                 </label>
                 <div className="col-sm-4">
                     <input
-                        type="text"
+                        type="number"
                         className="form-control"
-                        placeholder="Enter Deduction"
+                        id="other_deductions"
+                        onChange={(e) => {
+                            handleContribution(e, "other");
+                        }}
+                        placeholder="0.00"
+                        name="other_deductions"
                     />
                 </div>
             </div>

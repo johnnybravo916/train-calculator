@@ -30,9 +30,12 @@ const App = () => {
         monthly: 0,
         semi_monthly: 0,
     });
-    const [loan, setLoan] = useState({
+    const [contribution, setContribution] = useState({
         sss: 0.0,
         hdmf: 0.0,
+        hdmf_add: 0.0,
+        hmo_add: 0.0,
+        other: 0.0,
     });
 
     const handleMonthly = (e) => {
@@ -225,22 +228,53 @@ const App = () => {
         setHdmf({ monthly: value, semi_monthly: value / 2 / 2 });
     };
 
-    const handleLoan = (e, loantype) => {
+    const handleContribution = (e, valuetype) => {
         const { value } = e.target;
-        if (loantype === "sss") {
-            setLoan((prevValue) => {
-                return {
-                    ...prevValue,
-                    sss: value,
-                };
-            });
-        } else if (loantype === "hdmf") {
-            setLoan((prevValue) => {
-                return {
-                    ...prevValue,
-                    hdmf: value,
-                };
-            });
+        switch (valuetype) {
+            case "sss":
+                setContribution((prevValue) => {
+                    return {
+                        ...prevValue,
+                        sss: value,
+                    };
+                });
+                break;
+            case "hdmf":
+                setContribution((prevValue) => {
+                    return {
+                        ...prevValue,
+                        hdmf: value,
+                    };
+                });
+                break;
+            case "hdmf_add":
+                setContribution((prevValue) => {
+                    return {
+                        ...prevValue,
+                        hdmf_add: value,
+                    };
+                });
+                break;
+            case "hmo_add":
+                setContribution((prevValue) => {
+                    return {
+                        ...prevValue,
+                        hmo_add: value,
+                    };
+                });
+                break;
+            case "other":
+                setContribution((prevValue) => {
+                    return {
+                        ...prevValue,
+                        other: value,
+                    };
+                });
+                break;
+            default:
+                console.log(
+                    `contribution error for sss,hdmf,hmo or other ${value}`
+                );
         }
     };
 
@@ -270,9 +304,9 @@ const App = () => {
                 </div>
                 <div className="col-md-12">
                     <div className="block-deductions mb-5">
-                        <Loan handleLoan={handleLoan} />
-                        <Additional />
-                        <Other />
+                        <Loan handleContribution={handleContribution} />
+                        <Additional handleContribution={handleContribution} />
+                        <Other handleContribution={handleContribution} />
                         <Tax />
                     </div>
                     <Total />
