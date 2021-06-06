@@ -3,31 +3,8 @@ import { useState } from "react";
 import React from "react";
 
 const Earnings = (props) => {
-    const { rate, pay, setPay } = props;
-    const [hours, setHours] = useState({
-        absences: 0.0,
-        undertime: 0.0,
-        overtime: 0.0,
-        rest: 0.0,
-        night: 0.0,
-        work_special: 0.0,
-        work_regular: 0.0,
-        ot_rest: 0.0,
-        ot_special: 0.0,
-        ot_special_same: 0.0,
-        ot_regular: 0.0,
-        ot_regular_same: 0.0,
-        working_special: 0.0,
-        working_regular: 0.0,
-        night_rest: 0.0,
-        night_special: 0.0,
-        night_special_same: 0.0,
-        night_regular: 0.0,
-        night_regular_same: 0.0,
-        other_tax: 0.0,
-        other_nontax: 0.0,
-        total: 0.0
-    });
+    const { rate, pay, setHours, hours } = props;
+
 
     // const formatter = new Intl.NumberFormat('en-US', {
     //   style:'currency',
@@ -40,6 +17,7 @@ const Earnings = (props) => {
     //     });
     //     return value
     // };
+ 
 
     const handleAbsences = (e, earningtype) => {
         const value = e.target.value;
@@ -60,7 +38,6 @@ const Earnings = (props) => {
                 };
             });
         }
- 
     };
 
     const handleRegular = (e, regulartype) => {
@@ -947,14 +924,20 @@ const Earnings = (props) => {
                         </div>
                     </div>
                     <div className="row mb-1">
-                        <label
-                            htmlFor="daily_rate"
+                    <label
+                            htmlFor="taxable_amount"
                             className="col-sm-4 col-form-label"
                         >
                             Taxable Amount
                         </label>
                         <div className="col-sm-4">
-                            <input type="text" className="form-control" />
+                        <input
+                                className="form-control"
+                                name="taxable_amount"
+                                value={pay.taxable}
+                                type="number"
+                                readOnly
+                            />
                         </div>
                     </div>
                 </div>

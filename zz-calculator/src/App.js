@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import Rate from "./Rate";
@@ -13,8 +13,10 @@ import Total from "./Total";
 const App = () => {
     const [pay, setPay] = useState({
         gross: 0.0,
-        net: 0.0
-    })
+        taxable: 0.0,
+        deductions: 0.0,
+        net: 0.0,
+    });
     const [rate, setRate] = useState({
         monthly: 0.0,
         semi_monthly: 0.0,
@@ -34,12 +36,36 @@ const App = () => {
         monthly: 0,
         semi_monthly: 0,
     });
+    const [withholding, setWithholding] = useState(0);
     const [contribution, setContribution] = useState({
         sss: 0.0,
         hdmf: 0.0,
         hdmf_add: 0.0,
         hmo_add: 0.0,
         other: 0.0,
+    });
+    const [hours, setHours] = useState({
+        absences: 0.0,
+        undertime: 0.0,
+        overtime: 0.0,
+        rest: 0.0,
+        night: 0.0,
+        work_special: 0.0,
+        work_regular: 0.0,
+        ot_rest: 0.0,
+        ot_special: 0.0,
+        ot_special_same: 0.0,
+        ot_regular: 0.0,
+        ot_regular_same: 0.0,
+        working_special: 0.0,
+        working_regular: 0.0,
+        night_rest: 0.0,
+        night_special: 0.0,
+        night_special_same: 0.0,
+        night_regular: 0.0,
+        night_regular_same: 0.0,
+        other_tax: 0.0,
+        other_nontax: 0.0,
     });
 
     const handleMonthly = (e) => {
@@ -56,10 +82,69 @@ const App = () => {
                 hourly: hourly,
             };
         });
-        handleGross(semi_monthly);
         calcSSS(value);
         calcPH(value);
         calcHDMF(value);
+    };
+
+    useEffect(() => {
+        let value = Object.values(hours).reduce((a, b) => {
+            return a + b;
+        }, rate.semi_monthly);
+        let taxable =
+            value -
+            1733.33 -
+            sss.semi_monthly -
+            ph.semi_monthly -
+            hdmf.semi_monthly -
+            hours.other_nontax;
+        setPay((prevValue) => {
+            return {
+                ...prevValue,
+                gross: value,
+                taxable: taxable,
+            };
+        });
+        calcWithholding(taxable);
+    }, [hours, rate]);
+
+    const calcWithholding = (taxable) => {
+        let withholding_value = 0;
+        const calculateWithHolding = (
+            taxable,
+            min,
+            predetermined,
+            percent_value
+        ) => {
+            let excess = taxable - min;
+            let percent = excess * percent_value;
+            withholding_value = percent + predetermined;
+            return withholding_value;
+        };
+        switch (true) {
+            case taxable < 10417:
+                calculateWithHolding(taxable, 0, 0, 0);
+                break;
+            case taxable >= 10417 && taxable <= 16666:
+                calculateWithHolding(taxable, 10417, 0, 0.2);
+                break;
+            case taxable >= 16667 && taxable <= 33332:
+                calculateWithHolding(taxable, 16667, 1250, 0.25);
+                break;
+            case taxable >= 33333 && taxable <= 83332:
+                calculateWithHolding(taxable, 33333, 5416.67, 0.30);
+                break;
+            case taxable >= 83333 && taxable <= 333332:
+                calculateWithHolding(taxable, 83333, 20416.67, 0.32);
+                break;
+            case taxable >= 333333 && taxable <= 99999999:
+                calculateWithHolding(taxable, 333333, 100416.67, 0.35);
+                break;
+            default:
+                console.log("error withholding tax");
+        }
+        console.log(withholding_value);
+        setWithholding(withholding_value);
     };
 
     const calcSSS = (monthly) => {
@@ -208,7 +293,7 @@ const App = () => {
     const calcPH = (monthly) => {
         let value = 0;
         switch (true) {
-            case monthly < 10000:
+            case monthly <= 10000:
                 value = 300;
                 break;
             case monthly >= 10000.01 && monthly <= 59999.99:
@@ -283,14 +368,6 @@ const App = () => {
         }
     };
 
-    const handleGross = (value) =>{
-        setPay((prevValue)=>{
-           return {
-               ...prevValue,
-            gross: value}
-
-        })
-    }
     // const handleHourly = (e) => {
     //     const daily = e.target.value;
     //     const hourly = (daily / 8).toFixed(2);
@@ -312,7 +389,12 @@ const App = () => {
                         // handleHourly={handleHourly}
                         rate={rate}
                     />
-                    <Earnings rate={rate} pay={pay} setPay={setPay} />
+                    <Earnings
+                        rate={rate}
+                        pay={pay}
+                        setHours={setHours}
+                        hours={hours}
+                    />
                 </div>
                 <div className="col-md-12">
                     <div className="block-deductions mb-5">
@@ -320,9 +402,9 @@ const App = () => {
                         <Loan handleContribution={handleContribution} />
                         <Additional handleContribution={handleContribution} />
                         <Other handleContribution={handleContribution} />
-                        <Tax />
+                        <Tax withholding={withholding} />
                     </div>
-                    <Total />
+                    <Total pay={pay} />
                 </div>
             </div>
         </div>
