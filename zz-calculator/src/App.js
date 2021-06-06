@@ -30,6 +30,10 @@ const App = () => {
         monthly: 0,
         semi_monthly: 0,
     });
+    const [loan, setLoan] = useState({
+        sss: 0.0,
+        hdmf: 0.0,
+    });
 
     const handleMonthly = (e) => {
         const { value } = e.target;
@@ -208,19 +212,37 @@ const App = () => {
             default:
                 console.log(`contribution error for Philhealth, ${monthly}`);
         }
-        setPh({ monthly: value, semi_monthly: (value / 2)/2 });
+        setPh({ monthly: value, semi_monthly: value / 2 / 2 });
     };
 
     const calcHDMF = (monthly) => {
         let value = 0;
         if (monthly < 5000) {
-            value = 200
+            value = 200;
         } else {
-            value = 200
+            value = 200;
         }
-        setHdmf({ monthly: value, semi_monthly: (value / 2)/2 });
+        setHdmf({ monthly: value, semi_monthly: value / 2 / 2 });
     };
 
+    const handleLoan = (e, loantype) => {
+        const { value } = e.target;
+        if (loantype === "sss") {
+            setLoan((prevValue) => {
+                return {
+                    ...prevValue,
+                    sss: value,
+                };
+            });
+        } else if (loantype === "hdmf") {
+            setLoan((prevValue) => {
+                return {
+                    ...prevValue,
+                    hdmf: value,
+                };
+            });
+        }
+    };
 
     // const handleHourly = (e) => {
     //     const daily = e.target.value;
@@ -248,7 +270,7 @@ const App = () => {
                 </div>
                 <div className="col-md-12">
                     <div className="block-deductions mb-5">
-                        <Loan />
+                        <Loan handleLoan={handleLoan} />
                         <Additional />
                         <Other />
                         <Tax />

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Loan = () => {
+const Loan = ({handleLoan}) => {
     return (
         <div className="block-deductions__loan mb-3">
             <div className="row mb-1">
@@ -8,11 +8,14 @@ const Loan = () => {
                     SSS Loan
                 </label>
                 <div className="col-sm-4">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Enter Loan"
-                    />
+                <input
+                            type="number"
+                            className="form-control"
+                            id="sss_loan"
+                            onChange={(e)=>{handleLoan(e,"sss")}}
+                            placeholder="0.00"
+                            name="sss_loan"
+                        />
                 </div>
             </div>
             <div className="row mb-1">
@@ -20,11 +23,14 @@ const Loan = () => {
                     HDMF Loan
                 </label>
                 <div className="col-sm-4">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Enter Loan"
-                    />
+                <input
+                            type="number"
+                            className="form-control"
+                            id="hdmf_loan"
+                            onChange={(e)=>{handleLoan(e,"hdmf")}}
+                            placeholder="0.00"
+                            name="hdmf_loan"
+                        />
                 </div>
             </div>
         </div>
