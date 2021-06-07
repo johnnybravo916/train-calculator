@@ -1,6 +1,6 @@
 import React from "react";
 
-const Contribution = ({ sss, ph, hdmf }) => {
+const Contribution = ({ sss, ph, hdmf, formatPHP }) => {
 
     return (
         <div className="block-deductions__mandatory mb-3">
@@ -11,22 +11,23 @@ const Contribution = ({ sss, ph, hdmf }) => {
                 >
                     SSS Mandatory Contribution
                 </label>
-                <div className="col-sm-3">
+                <div className="col-sm-3 d-none">
                     <input
                         type="text"
                         className="form-control"
                         name="sss_contribution"
                         readOnly
+                        hidden
                         value={sss.monthly}
                     />
                 </div>
                 <div className="col-sm-3">
                     <input
                         className="form-control"
-                        type="number"
+                        type="text"
                         name="sss_contribution_semi_monthly"
                         readOnly
-                        value={sss.semi_monthly}
+                        value={formatPHP(sss.semi_monthly)}
                     />
                 </div>
             </div>
@@ -37,12 +38,13 @@ const Contribution = ({ sss, ph, hdmf }) => {
                 >
                     PHILHEALTH Mandatory Contribution
                 </label>
-                <div className="col-sm-3">
+                <div className="col-sm-3 d-none">
                     <input
                         type="text"
                         className="form-control"
                         name="philhealth_contribution"
                         readOnly
+                        hidden
                         value={ph.monthly}
                     />
                 </div>
@@ -52,7 +54,7 @@ const Contribution = ({ sss, ph, hdmf }) => {
                         className="form-control"
                         name="philhealth_contribution_semi_monthly"
                         readOnly
-                        value={ph.semi_monthly}
+                        value={formatPHP(ph.semi_monthly)}
                     />
                 </div>
             </div>
@@ -63,12 +65,13 @@ const Contribution = ({ sss, ph, hdmf }) => {
                 >
                     HDMF Mandatory Contribution
                 </label>
-                <div className="col-sm-3">
+                <div className="col-sm-3 d-none">
                 <input
                         type="text"
                         className="form-control"
                         name="hdmf_contribution_semi_monthly"
                         readOnly
+                        hidden
                         value={hdmf.monthly}
                     />
                 </div>
@@ -78,7 +81,7 @@ const Contribution = ({ sss, ph, hdmf }) => {
                         className="form-control"
                         name="hdmf_contribution_semi_monthly"
                         readOnly
-                        value={hdmf.semi_monthly}
+                        value={formatPHP(hdmf.semi_monthly)}
                     />
                 </div>
             </div>

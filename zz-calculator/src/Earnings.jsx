@@ -1,7 +1,7 @@
 import React from "react";
 
 const Earnings = (props) => {
-    const { rate, pay, setHours, hours } = props;
+    const { rate, pay, setHours, hours, formatPHP } = props;
 
     // const formatter = new Intl.NumberFormat('en-US', {
     //   style:'currency',
@@ -16,7 +16,7 @@ const Earnings = (props) => {
     // };
 
     const handleAbsences = (e, earningtype) => {
-        const value = e.target.value;
+        const value = Number(e.target.value);
         if (earningtype === "absence") {
             const absence_value = -(value * rate.daily);
             setHours((prevValue) => {
@@ -37,7 +37,7 @@ const Earnings = (props) => {
     };
 
     const handleRegular = (e, regulartype) => {
-        const value = e.target.value;
+        const value = Number(e.target.value);
         switch (regulartype) {
             case "overtime":
                 const overtime_value = rate.hourly * 0.0125 * 100 * value;
@@ -91,7 +91,7 @@ const Earnings = (props) => {
     };
 
     const handleOT = (e, ottype) => {
-        const value = e.target.value;
+        const value = Number(e.target.value);
         switch (ottype) {
             case "ot_rest":
                 const ot_rest_value = rate.hourly * 0.0169 * 100 * value;
@@ -146,7 +146,7 @@ const Earnings = (props) => {
     };
 
     const handleWorking = (e, workingtype) => {
-        const value = e.target.value;
+        const value = Number(e.target.value);
         switch (workingtype) {
             case "working_special":
                 const working_special_value = rate.hourly * 0.015 * 100 * value;
@@ -172,7 +172,7 @@ const Earnings = (props) => {
     };
 
     const handleNight = (e, nighttype) => {
-        const value = e.target.value;
+        const value = Number(e.target.value);
         switch (nighttype) {
             case "night_rest":
                 const night_rest_value =
@@ -230,7 +230,7 @@ const Earnings = (props) => {
     };
 
     const handleOther = (e, othertype) => {
-        const value = e.target.value;
+        const value = Number(e.target.value);
         switch (othertype) {
             case "other_tax":
                 const other_tax_value = value;
@@ -271,7 +271,7 @@ const Earnings = (props) => {
                             type="text"
                             className="form-control"
                             placeholder="0.00"
-                            value={rate.semi_monthly}
+                            value={formatPHP(rate.semi_monthly)}
                             readOnly
                         />
                     </div>
@@ -286,7 +286,7 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-3">
                             <input
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Days"
                                 onChange={(e) => {
@@ -299,9 +299,9 @@ const Earnings = (props) => {
                         <div className="col-sm-3">
                             <input
                                 className="form-control"
-                                type="number"
+                                type="text"
                                 name="earnings_absences_value"
-                                value={hours.absences}
+                                value={formatPHP(hours.absences)}
                                 readOnly
                             />
                         </div>
@@ -315,7 +315,7 @@ const Earnings = (props) => {
                         </label>
                         <div className="col-sm-3">
                             <input
-                                type="text"
+                                type="number"
                                 id="earnings_undertime"
                                 className="form-control"
                                 placeholder="Hours"
@@ -328,9 +328,9 @@ const Earnings = (props) => {
                         <div className="col-sm-3">
                             <input
                                 className="form-control"
-                                type="number"
+                                type="text"
                                 name="earnings_undertime_value"
-                                value={hours.undertime}
+                                value={formatPHP(hours.undertime)}
                                 readOnly
                             />
                         </div>
@@ -348,7 +348,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_regular_overtime"
                                 name="earnings_regular_overtime"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -360,9 +360,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_regular_overtime_value"
-                                value={hours.overtime}
+                                value={formatPHP(hours.overtime)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -377,7 +377,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_rest_day"
                                 name="earnings_rest_day"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -389,9 +389,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_rest_day_value"
-                                value={hours.rest}
+                                value={formatPHP(hours.rest)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -406,7 +406,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_night"
                                 name="earnings_night"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -418,9 +418,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_night_value"
-                                value={hours.night}
+                                value={formatPHP(hours.night)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -435,7 +435,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_work_special"
                                 name="earnings_work_special"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -447,9 +447,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_work_special_value"
-                                value={hours.work_special}
+                                value={formatPHP(hours.work_special)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -464,7 +464,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_work_regular"
                                 name="earnings_work_regular"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -476,9 +476,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_work_regular_value"
-                                value={hours.work_regular}
+                                value={formatPHP(hours.work_regular)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -495,7 +495,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_ot_rest"
                                 name="earnings_ot_rest"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -507,9 +507,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_ot_rest_value"
-                                value={hours.ot_rest}
+                                value={formatPHP(hours.ot_rest)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -524,7 +524,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_ot_special"
                                 name="earnings_ot_special"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -536,9 +536,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_ot_special_value"
-                                value={hours.ot_special}
+                                value={formatPHP(hours.ot_special)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -554,7 +554,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_ot_special_same"
                                 name="earnings_ot_special_same"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -566,9 +566,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_ot_special_same_value"
-                                value={hours.ot_special_same}
+                                value={formatPHP(hours.ot_special_same)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -583,7 +583,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_ot_regular"
                                 name="earnings_ot_regular"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -595,8 +595,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_ot_regular_value"
-                                value={hours.ot_regular}
-                                type="number"
+                                value={formatPHP(hours.ot_regular)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -613,7 +613,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_ot_regular_same"
                                 name="earnings_ot_regular_same"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -625,9 +625,9 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_ot_regular_same_value"
-                                value={hours.ot_regular_same}
+                                value={formatPHP(hours.ot_regular_same)}
                                 readOnly
-                                type="number"
+                                type="text"
                             />
                         </div>
                     </div>
@@ -644,7 +644,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_working_special"
                                 name="earnings_working_special"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -656,8 +656,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_working_special_value"
-                                value={hours.working_special}
-                                type="number"
+                                value={formatPHP(hours.working_special)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -673,7 +673,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_working_regular"
                                 name="earnings_working_regular"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -685,8 +685,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_working_regular_value"
-                                value={hours.working_regular}
-                                type="number"
+                                value={formatPHP(hours.working_regular)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -704,7 +704,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_night_rest"
                                 name="earnings_night_rest"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -716,8 +716,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_night_rest_value"
-                                value={hours.night_rest}
-                                type="number"
+                                value={formatPHP(hours.night_rest)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -733,7 +733,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_night_special"
                                 name="earnings_night_special"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -745,8 +745,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_night_special_value"
-                                value={hours.night_special}
-                                type="number"
+                                value={formatPHP(hours.night_special)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -763,7 +763,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_night_special_same"
                                 name="earnings_night_special_same"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -775,8 +775,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_night_special_same_value"
-                                value={hours.night_special_same}
-                                type="number"
+                                value={formatPHP(hours.night_special_same)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -792,7 +792,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_night_regular"
                                 name="earnings_night_regular"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -804,8 +804,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_night_regular_value"
-                                value={hours.night_regular}
-                                type="number"
+                                value={formatPHP(hours.night_regular)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -822,7 +822,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_night_regular_same"
                                 name="earnings_night_regular_same"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -834,8 +834,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_night_regular_same_value"
-                                value={hours.night_regular_same}
-                                type="number"
+                                value={formatPHP(hours.night_regular_same)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -853,7 +853,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_other_tax"
                                 name="earnings_other_tax"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -865,8 +865,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_other_tax_value"
-                                value={hours.other_tax}
-                                type="number"
+                                value={formatPHP(hours.other_tax)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -882,7 +882,7 @@ const Earnings = (props) => {
                             <input
                                 id="earnings_other_nontax"
                                 name="earnings_other_nontax"
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Hours"
                                 onChange={(e) => {
@@ -894,8 +894,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_other_nontax_value"
-                                value={hours.other_nontax}
-                                type="number"
+                                value={formatPHP(hours.other_nontax)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -913,8 +913,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="earnings_gross"
-                                value={pay.gross}
-                                type="number"
+                                value={formatPHP(pay.gross)}
+                                type="text"
                                 readOnly
                             />
                         </div>
@@ -930,8 +930,8 @@ const Earnings = (props) => {
                             <input
                                 className="form-control"
                                 name="taxable_amount"
-                                value={pay.taxable}
-                                type="number"
+                                value={formatPHP(pay.taxable)}
+                                type="text"
                                 readOnly
                             />
                         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Total = ({pay, net}) => {
+const Total = ({pay, net, formatPHP}) => {
     return (
         <div className="block-total">
             <div className="block-total__deductions mb-4">
@@ -15,9 +15,9 @@ const Total = ({pay, net}) => {
                     <input
                         className="form-control"
                         name="total_deductions"
-                        value={pay.deductions}
+                        value={formatPHP(pay.deductions)}
                         readOnly
-                        type="number"
+                        type="text"
                     />
                     </div>
                 </div>

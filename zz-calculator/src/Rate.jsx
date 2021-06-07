@@ -1,7 +1,7 @@
 import React from "react";
 
 const Rate = (props) => {
-    const { handleMonthly, rate } = props;
+    const { handleMonthly, rate, formatPHP } = props;
 
     return (
         <>
@@ -36,7 +36,7 @@ const Rate = (props) => {
                             type="text"
                             className="form-control"
                             id="daily_rate"
-                            value={rate.daily}
+                            value={formatPHP(rate.daily)}
                             placeholder="0.00"
                             name="daily_rate"
                             readOnly
@@ -55,7 +55,7 @@ const Rate = (props) => {
                             type="text"
                             className="form-control"
                             id="hourly_rate"
-                            value={rate.hourly}
+                            value={formatPHP(rate.hourly)}
                             placeholder="0.00"
                             name="hourly_rate"
                             readOnly
