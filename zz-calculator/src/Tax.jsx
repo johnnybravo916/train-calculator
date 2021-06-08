@@ -1,6 +1,6 @@
 import React from "react";
 
-const Tax = ({ withholding }) => {
+const Tax = ({ withholding, formatPHP }) => {
     return (
         <div className="block-deductions__tax mb-3">
             <div className="row mb-1">
@@ -14,9 +14,9 @@ const Tax = ({ withholding }) => {
                     <input
                         className="form-control"
                         name="withholding_tax"
-                        value={withholding}
+                        value={formatPHP(withholding)}
                         readOnly
-                        type="number"
+                        type="string"
                     />
                 </div>
             </div>
