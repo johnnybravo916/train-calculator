@@ -7,7 +7,7 @@ const Total = ({pay, net, formatPHP}) => {
                 <div className="row mb-1">
                 <label
                     htmlFor="total_deductions"
-                    className="col-sm-6 col-form-label"
+                    className="col-sm-6 col-form-label font-important"
                 >
                         TOTAL DEDUCTIONS
                     </label>
@@ -26,7 +26,7 @@ const Total = ({pay, net, formatPHP}) => {
                 <div className="row mb-1">
                 <label
                     htmlFor="total_net_pay"
-                    className="col-sm-6 col-form-label"
+                    className="col-sm-6 col-form-label font-important"
                 >
                         TOTAL NET PAY
                     </label>

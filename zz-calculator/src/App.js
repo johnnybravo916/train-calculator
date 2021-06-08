@@ -348,18 +348,21 @@ const App = () => {
         } else {
             value = 200;
         }
-        setHdmf({ monthly: Number(value), semi_monthly: Number(value) / 2 / 2 });
+        setHdmf({
+            monthly: Number(value),
+            semi_monthly: Number(value) / 2 / 2,
+        });
     };
 
     const handleContribution = (e, valuetype) => {
         const value = Number(e.target.value);
-        console.log(typeof(value))
+        console.log(typeof value);
         switch (valuetype) {
             case "sss":
                 setContribution((prevValue) => {
                     return {
                         ...prevValue,
-                        sss:value,
+                        sss: value,
                     };
                 });
                 break;
@@ -367,7 +370,7 @@ const App = () => {
                 setContribution((prevValue) => {
                     return {
                         ...prevValue,
-                        hdmf:value,
+                        hdmf: value,
                     };
                 });
                 break;
@@ -375,7 +378,7 @@ const App = () => {
                 setContribution((prevValue) => {
                     return {
                         ...prevValue,
-                        hdmf_add:value,
+                        hdmf_add: value,
                     };
                 });
                 break;
@@ -383,7 +386,7 @@ const App = () => {
                 setContribution((prevValue) => {
                     return {
                         ...prevValue,
-                        hmo_add:value,
+                        hmo_add: value,
                     };
                 });
                 break;
@@ -391,7 +394,7 @@ const App = () => {
                 setContribution((prevValue) => {
                     return {
                         ...prevValue,
-                        other:value,
+                        other: value,
                     };
                 });
                 break;
@@ -414,37 +417,68 @@ const App = () => {
     //     });
     // };
 
+    var path = process.env.PUBLIC_URL;
+
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <h1>Salary Calculator</h1>
-                <div className="col-md-6">
-                    <Rate
-                        handleMonthly={handleMonthly}
-                        // handleHourly={handleHourly}
-                        rate={rate}
-                        formatPHP={formatPHP}
-                    />
-                    <Earnings
-                        rate={rate}
-                        pay={pay}
-                        setHours={setHours}
-                        hours={hours}
-                        formatPHP={formatPHP}
-                    />
-                </div>
-                <div className="col-md-6">
-                    <div className="block-deductions mb-5">
-                        <Contribution sss={sss} ph={ph} hdmf={hdmf} formatPHP={formatPHP}/>
-                        <Loan handleContribution={handleContribution} />
-                        <Additional handleContribution={handleContribution} />
-                        <Other handleContribution={handleContribution} />
-                        <Tax withholding={withholding} formatPHP={formatPHP}/>
+        <>
+            <header>
+                <div class="container-fluid">
+                    <div className="row">
+                        <div class="col-md-12">
+                            <a
+                                href="https://zigzagoffshoring.com/"
+                                title="Zigzag Offshoring"
+                            >
+                                <img
+                                    src={`${path}/img/logo.png`}
+                                    alt="Zigzag Offshoring"
+                                />
+                            </a>
+                        </div>
                     </div>
-                    <Total pay={pay} net={net} formatPHP={formatPHP}/>
+                </div>
+            </header>
+            <div className="container-fluid">
+                <div className="row">
+                    <h1>Salary Calculator</h1>
+                    <div className="col-md-6">
+                        <Rate
+                            handleMonthly={handleMonthly}
+                            // handleHourly={handleHourly}
+                            rate={rate}
+                            formatPHP={formatPHP}
+                        />
+                        <Earnings
+                            rate={rate}
+                            pay={pay}
+                            setHours={setHours}
+                            hours={hours}
+                            formatPHP={formatPHP}
+                        />
+                    </div>
+                    <div className="col-md-6">
+                        <div className="block-deductions mb-5">
+                            <Contribution
+                                sss={sss}
+                                ph={ph}
+                                hdmf={hdmf}
+                                formatPHP={formatPHP}
+                            />
+                            <Loan handleContribution={handleContribution} />
+                            <Additional
+                                handleContribution={handleContribution}
+                            />
+                            <Other handleContribution={handleContribution} />
+                            <Tax
+                                withholding={withholding}
+                                formatPHP={formatPHP}
+                            />
+                        </div>
+                        <Total pay={pay} net={net} formatPHP={formatPHP} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

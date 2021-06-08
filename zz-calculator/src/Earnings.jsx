@@ -855,13 +855,13 @@ const Earnings = (props) => {
                                 name="earnings_other_tax"
                                 type="number"
                                 className="form-control"
-                                placeholder="Hours"
+                                placeholder="0.00"
                                 onChange={(e) => {
                                     handleOther(e, "other_tax");
                                 }}
                             />
                         </div>
-                        <div className="col-sm-3">
+                        <div className="col-sm-3 d-none">
                             <input
                                 className="form-control"
                                 name="earnings_other_tax_value"
@@ -884,13 +884,13 @@ const Earnings = (props) => {
                                 name="earnings_other_nontax"
                                 type="number"
                                 className="form-control"
-                                placeholder="Hours"
+                                placeholder="0.00"
                                 onChange={(e) => {
                                     handleOther(e, "other_nontax");
                                 }}
                             />
                         </div>
-                        <div className="col-sm-3">
+                        <div className="col-sm-3 d-none">
                             <input
                                 className="form-control"
                                 name="earnings_other_nontax_value"
@@ -904,8 +904,8 @@ const Earnings = (props) => {
                 <div className="block-earnings__total mb-5">
                     <div className="row mb-1">
                         <label
-                            htmlFor="earnings_gross"
-                            className="col-sm-6 col-form-label"
+                            htmlFor="earnings_gross "
+                            className="col-sm-6 col-form-label font-important"
                         >
                             TOTAL GROSS INCOME
                         </label>
@@ -921,8 +921,8 @@ const Earnings = (props) => {
                     </div>
                     <div className="row mb-1">
                         <label
-                            htmlFor="taxable_amount"
-                            className="col-sm-6 col-form-label"
+                            htmlFor="taxable_amount "
+                            className="col-sm-6 col-form-label font-important"
                         >
                             Taxable Amount
                         </label>
