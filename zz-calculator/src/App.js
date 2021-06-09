@@ -426,12 +426,12 @@ const App = () => {
                     <div className="row">
                         <div class="col-md-12">
                             <a
-                                href="https://zigzagoffshoring.com/"
-                                title="Zigzag Offshoring"
+                                href="https://www.myzigzag.ph/"
+                                title="Zigzag"
                             >
                                 <img
                                     src={`${path}/img/logo.png`}
-                                    alt="Zigzag Offshoring"
+                                    alt="Zigzag"
                                 />
                             </a>
                         </div>

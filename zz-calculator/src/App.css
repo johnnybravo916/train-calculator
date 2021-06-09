@@ -1,5 +1,5 @@
 html {
-  border-top: 10px solid #00a5e1;
+  border-top: 10px solid #000;
 }
 
 body {
@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background: #000;
+  background: #00a5e1;
   text-align: center;
   padding: 10px 0;
   margin-bottom:10px;
